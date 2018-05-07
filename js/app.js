@@ -51,6 +51,7 @@ var Player = function() {
   this.sprite = allSprites[this.lvl];
 };
 
+//Add additional sprites
 var allSprites = [
   'images/char-boy.png',
   'images/char-cat-girl.png',
@@ -68,6 +69,7 @@ Player.prototype.update = function () {
   if (this.y > 400) {
     this.y = 400;
   }
+  //Player changes the appearance everytime it aims to the river
   if (this.y <= -5) {
     player.reset();
     this.sprite = allSprites[++this.lvl%5];
@@ -93,12 +95,14 @@ Player.prototype.handleInput = function (key) {
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+//If the collision happens between the Player and bug, the Player return to the previous place
 
 Player.prototype.reset = function () {
   this.x = 250;
   this.y = 400;
 };
 
+//this function randomize the speed of the bugs
 function getRandomSpeed(max) {
   return Math.floor(Math.random() * Math.floor(max) * 10)+50;
 }
